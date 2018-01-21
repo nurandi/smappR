@@ -125,7 +125,7 @@ searchTweets <- function(q, filename, n=200, oauth_folder="~/credentials",
     }
     ## writing to disk
     conn <- file(filename, "a")
-    ret <- lapply(json.data[[1]], function(x) writeLines(jsonlite::toJSON(x, null="null"), con=conn))
+    ret <- lapply(json.data[[1]], function(x) writeLines(jsonlite::toJSON(x, null="null", auto_unbox=TRUE), con=conn))
     close(conn)
     ## max_id
     tweets <- length(json.data[[1]])
@@ -163,7 +163,7 @@ searchTweets <- function(q, filename, n=200, oauth_folder="~/credentials",
         }
         ## writing to disk
         conn <- file(filename, "a")
-        ret <- lapply(json.data[[1]], function(x) writeLines(jsonlite::toJSON(x, null="null"), con=conn))
+        ret <- lapply(json.data[[1]], function(x) writeLines(jsonlite::toJSON(x, null="null", auto_unbox=TRUE), con=conn))
         close(conn)
         ## max_id
         tweets <- tweets + length(json.data[[1]])
